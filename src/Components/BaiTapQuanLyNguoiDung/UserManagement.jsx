@@ -23,14 +23,15 @@ class UserManagement extends Component {
     }
 
     return data.map((ele, idx) => {
-      const { id, username, fullName, email, phoneNumber, type } = ele;
+      const { id, maSV, fullName, email, phoneNumber, type } = ele;
 
       return (
         <tr key={id} className={`${idx % 2 === 0 && 'bg-light'}`}>
           <td>{idx + 1}</td>
+          <td>{maSV}</td>
           <td>{fullName}</td>
-          <td>{email}</td>
           <td>{phoneNumber}</td>
+          <td>{email}</td>
           <td>
             <button
               onClick={() =>
@@ -71,7 +72,7 @@ class UserManagement extends Component {
   render() {
     return (
       <div className="card p-0 mt-3">
-        <div className="card-header font-weight-bold">USER MANAGEMENT</div>
+        <div className="card-header font-weight-bold bg-dark text-white">DANH SÁCH SINH VIÊN</div>
         <div className="row mt-4 px-3 ">
           <div className="col-4">
             <div className="form-group mb-0">
@@ -89,10 +90,11 @@ class UserManagement extends Component {
           <table className="table">
             <thead>
               <tr>
+              <th>STT</th>
                 <th>Mã SV</th>
                 <th>Họ tên</th>
-                <th>Email</th>
                 <th>Số điện thoại</th>
+                <th>Email</th>
                 <th></th>
               </tr>
             </thead>

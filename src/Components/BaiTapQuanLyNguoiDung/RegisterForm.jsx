@@ -80,21 +80,22 @@ class RegisterForm extends Component {
       minLength,
       maxLength,
       //   validationMessage,
-      validity: { valueMissing, patternMismatch, tooLong, tooShort },
+      validity: { valueMissing, patternMismatch, tooLong, tooShort}
     } = event.target;
 
     let message = '';
 
     if (patternMismatch) {
-      message = `${title} is invalid pattern.`;
+      message = `${title} không đúng định dạng`;
     }
+  
 
     if (tooShort || tooLong) {
       message = `${title} from ${minLength} - ${maxLength} characters.`;
     }
 
     if (valueMissing) {
-      message = `${title} is required.`;
+      message = `Vui lòng nhập ${title}`;
     }
 
     this.setState({
@@ -121,11 +122,12 @@ class RegisterForm extends Component {
                 <div className="form-group">
                   <label>Mã SV</label>
                   <input
-                    title="MaSV"
+                    title=" Mã sinh viên"
                     required
                     type="text"
                     name="maSV"
                     value={maSV}
+                    pattern="^[0-9]+$"
                     className="form-control"
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
@@ -141,12 +143,17 @@ class RegisterForm extends Component {
                 <div className="form-group">
                   <label>Họ tên</label>
                   <input
-                    title="Full name"
+                    title="Họ tên"
                     required
                     minLength={4}
                     maxLength={12}
                     name="fullName"
                     value={fullName}
+                    pattern={
+                      "^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+                      "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+                      "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"
+                    }
                     type="text"
                     className="form-control"
                     onChange={this.handleChange}
@@ -165,8 +172,9 @@ class RegisterForm extends Component {
                   <input
                     required
                     value={phoneNumber}
-                    title="Phone number"
+                    title="Số điện thoại"
                     name="phoneNumber"
+                    pattern="^[0-9]+$"
                     type="text"
                     className="form-control"
                     onChange={this.handleChange}
